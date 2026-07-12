@@ -58,7 +58,7 @@ CREATE TABLE Entrega(
 	UsuarioId INT NOT NULL,
 	PedidoId INT NOT NULL,
 	Observaciones NVARCHAR(255),
-	FechaEntrega DATETIME NOT NULL,
+	FechaEntrega DATETIME NULL,
 	EstadoEntrega NVARCHAR(30) NOT NULL
 );
 
