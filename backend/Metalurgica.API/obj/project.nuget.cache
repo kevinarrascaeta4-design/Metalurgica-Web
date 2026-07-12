@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Kl0V8oJR/S4=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\kevin\\Documents\\Metalurgica-Web\\backend\\Metalurgica.API\\Metalurgica.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.5\\microsoft.aspnetcore.openapi.9.0.5.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
