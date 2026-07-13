@@ -1,4 +1,5 @@
 C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Infrastructure\bin\Debug\net9.0\Metalurgica.Infrastructure.deps.json
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Infrastructure\bin\Debug\net9.0\Metalurgica.Infrastructure.runtimeconfig.json
 C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Infrastructure\bin\Debug\net9.0\Metalurgica.Infrastructure.dll
 C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Infrastructure\bin\Debug\net9.0\Metalurgica.Infrastructure.pdb
 C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Infrastructure\bin\Debug\net9.0\Metalurgica.Domain.dll
@@ -15,4 +16,5 @@ C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Infrastructure\obj\
 C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Infrastructure\obj\Debug\net9.0\Metalurgica.Infrastructure.dll
 C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Infrastructure\obj\Debug\net9.0\refint\Metalurgica.Infrastructure.dll
 C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Infrastructure\obj\Debug\net9.0\Metalurgica.Infrastructure.pdb
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Infrastructure\obj\Debug\net9.0\Metalurgica.Infrastructure.genruntimeconfig.cache
 C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Infrastructure\obj\Debug\net9.0\ref\Metalurgica.Infrastructure.dll

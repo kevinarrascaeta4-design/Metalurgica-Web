@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Metalurgica.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9fbb6b676e0a9789c846e06236bc27c3ba17122f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f67b5fb16e909423811e35b27a0335e2edb028b6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Metalurgica.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Metalurgica.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
