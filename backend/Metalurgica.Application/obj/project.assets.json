@@ -1,11 +1,46 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "Metalurgica.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Metalurgica.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Metalurgica.Domain.dll": {}
+        }
+      },
+      "Metalurgica.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Metalurgica.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Metalurgica.Shared.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Metalurgica.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Metalurgica.Domain/Metalurgica.Domain.csproj",
+      "msbuildProject": "../Metalurgica.Domain/Metalurgica.Domain.csproj"
+    },
+    "Metalurgica.Shared/1.0.0": {
+      "type": "project",
+      "path": "../Metalurgica.Shared/Metalurgica.Shared.csproj",
+      "msbuildProject": "../Metalurgica.Shared/Metalurgica.Shared.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "Metalurgica.Domain >= 1.0.0",
+      "Metalurgica.Shared >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\kevin\\.nuget\\packages\\": {},
@@ -39,7 +74,14 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\kevin\\Documents\\Metalurgica-Web\\backend\\Metalurgica.Domain\\Metalurgica.Domain.csproj": {
+              "projectPath": "C:\\Users\\kevin\\Documents\\Metalurgica-Web\\backend\\Metalurgica.Domain\\Metalurgica.Domain.csproj"
+            },
+            "C:\\Users\\kevin\\Documents\\Metalurgica-Web\\backend\\Metalurgica.Shared\\Metalurgica.Shared.csproj": {
+              "projectPath": "C:\\Users\\kevin\\Documents\\Metalurgica-Web\\backend\\Metalurgica.Shared\\Metalurgica.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

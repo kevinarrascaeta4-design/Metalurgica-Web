@@ -1,0 +1,12 @@
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\bin\Debug\net9.0\Metalurgica.Shared.deps.json
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\bin\Debug\net9.0\Metalurgica.Shared.dll
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\bin\Debug\net9.0\Metalurgica.Shared.pdb
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\obj\Debug\net9.0\Metalurgica.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\obj\Debug\net9.0\Metalurgica.Shared.AssemblyInfoInputs.cache
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\obj\Debug\net9.0\Metalurgica.Shared.AssemblyInfo.cs
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\obj\Debug\net9.0\Metalurgica.Shared.csproj.CoreCompileInputs.cache
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\obj\Debug\net9.0\Metalurgica.Shared.sourcelink.json
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\obj\Debug\net9.0\Metalurgica.Shared.dll
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\obj\Debug\net9.0\refint\Metalurgica.Shared.dll
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\obj\Debug\net9.0\Metalurgica.Shared.pdb
+C:\Users\kevin\Documents\Metalurgica-Web\backend\Metalurgica.Shared\obj\Debug\net9.0\ref\Metalurgica.Shared.dll

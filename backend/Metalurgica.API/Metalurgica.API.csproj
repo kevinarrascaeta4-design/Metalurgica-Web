@@ -10,4 +10,10 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Metalurgica.Application\Metalurgica.Application.csproj" />
+    <ProjectReference Include="..\Metalurgica.Infrastructure\Metalurgica.Infrastructure.csproj" />
+    <ProjectReference Include="..\Metalurgica.Shared\Metalurgica.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

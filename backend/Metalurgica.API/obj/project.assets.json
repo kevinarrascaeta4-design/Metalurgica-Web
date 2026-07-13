@@ -33,6 +33,54 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "Metalurgica.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Metalurgica.Domain": "1.0.0",
+          "Metalurgica.Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Metalurgica.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Metalurgica.Application.dll": {}
+        }
+      },
+      "Metalurgica.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Metalurgica.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Metalurgica.Domain.dll": {}
+        }
+      },
+      "Metalurgica.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Metalurgica.Domain": "1.0.0",
+          "Metalurgica.Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Metalurgica.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Metalurgica.Infrastructure.dll": {}
+        }
+      },
+      "Metalurgica.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Metalurgica.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Metalurgica.Shared.dll": {}
+        }
       }
     }
   },
@@ -67,10 +115,33 @@
         "microsoft.openapi.1.6.17.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
+    },
+    "Metalurgica.Application/1.0.0": {
+      "type": "project",
+      "path": "../Metalurgica.Application/Metalurgica.Application.csproj",
+      "msbuildProject": "../Metalurgica.Application/Metalurgica.Application.csproj"
+    },
+    "Metalurgica.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Metalurgica.Domain/Metalurgica.Domain.csproj",
+      "msbuildProject": "../Metalurgica.Domain/Metalurgica.Domain.csproj"
+    },
+    "Metalurgica.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Metalurgica.Infrastructure/Metalurgica.Infrastructure.csproj",
+      "msbuildProject": "../Metalurgica.Infrastructure/Metalurgica.Infrastructure.csproj"
+    },
+    "Metalurgica.Shared/1.0.0": {
+      "type": "project",
+      "path": "../Metalurgica.Shared/Metalurgica.Shared.csproj",
+      "msbuildProject": "../Metalurgica.Shared/Metalurgica.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Metalurgica.Application >= 1.0.0",
+      "Metalurgica.Infrastructure >= 1.0.0",
+      "Metalurgica.Shared >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 9.0.5"
     ]
   },
@@ -106,7 +177,17 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\kevin\\Documents\\Metalurgica-Web\\backend\\Metalurgica.Application\\Metalurgica.Application.csproj": {
+              "projectPath": "C:\\Users\\kevin\\Documents\\Metalurgica-Web\\backend\\Metalurgica.Application\\Metalurgica.Application.csproj"
+            },
+            "C:\\Users\\kevin\\Documents\\Metalurgica-Web\\backend\\Metalurgica.Infrastructure\\Metalurgica.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\kevin\\Documents\\Metalurgica-Web\\backend\\Metalurgica.Infrastructure\\Metalurgica.Infrastructure.csproj"
+            },
+            "C:\\Users\\kevin\\Documents\\Metalurgica-Web\\backend\\Metalurgica.Shared\\Metalurgica.Shared.csproj": {
+              "projectPath": "C:\\Users\\kevin\\Documents\\Metalurgica-Web\\backend\\Metalurgica.Shared\\Metalurgica.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
