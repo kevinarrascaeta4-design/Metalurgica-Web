@@ -1,6 +1,0 @@
-@Metalurgica.API_HostAddress = http://localhost:5198
-
-GET {{Metalurgica.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
