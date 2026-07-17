@@ -1,24 +1,8 @@
-import { useEffect, useState } from 'react';
-import { apiClient } from '../../../api/client';
-
 export function DashboardPage() {
-  const [resultado, setResultado] = useState('Probando conexión...');
-
-  useEffect(() => {
-    apiClient
-      .get('/api/rol')
-      .then((response) => {
-        setResultado(`✅ Conexión OK. Roles recibidos: ${response.data.length}`);
-      })
-      .catch((error) => {
-        setResultado(`❌ Error: ${error.mensaje ?? 'No se pudo conectar'}`);
-      });
-  }, []);
-
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>{resultado}</p>
+    <div className="p-8">
+      <h1 className="text-3xl font-bold text-primary">Dashboard</h1>
+      <p className="mt-2 text-muted-foreground">Prueba de Tailwind + shadcn funcionando ✅</p>
     </div>
   );
 }
