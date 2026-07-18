@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Metalurgica.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+520c24c3767cf9d615d0261b55a6995aee5f2332")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85ef20fc7bcae82d99d3a551be4e08530d310611")]
 [assembly: System.Reflection.AssemblyProductAttribute("Metalurgica.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Metalurgica.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

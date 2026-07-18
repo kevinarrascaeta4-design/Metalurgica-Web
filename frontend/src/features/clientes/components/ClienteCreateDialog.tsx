@@ -8,23 +8,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { ProductoForm } from './ProductoForm';
-import { useCreateProducto } from '../hooks/useCreateProducto';
-import type { ProductoFormValues } from '../schemas/producto.schema';
+import { ClienteForm } from './ClienteForm';
+import { useCreateCliente } from '../hooks/useCreateCliente';
+import type { ClienteFormValues } from '../schemas/cliente.schema';
 
-export function ProductoCreateDialog() {
+export function ClienteCreateDialog() {
   const [open, setOpen] = useState(false);
   const [errorMensaje, setErrorMensaje] = useState<string | null>(null);
-  const { mutate, isPending } = useCreateProducto();
+  const { mutate, isPending } = useCreateCliente();
 
-  const handleSubmit = (values: ProductoFormValues) => {
+  const handleSubmit = (values: ClienteFormValues) => {
     setErrorMensaje(null);
     mutate(values, {
       onSuccess: () => {
         setOpen(false);
       },
       onError: (error: any) => {
-        setErrorMensaje(error.mensaje ?? 'Ocurrió un error al crear el producto.');
+        setErrorMensaje(error.mensaje ?? 'Ocurrió un error al crear el cliente.');
       },
     });
   };
@@ -40,19 +40,19 @@ export function ProductoCreateDialog() {
       <DialogTrigger asChild>
         <Button>
           <Plus className="h-4 w-4" />
-          Nuevo Producto
+          Nuevo Cliente
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Nuevo Producto</DialogTitle>
+          <DialogTitle>Nuevo Cliente</DialogTitle>
         </DialogHeader>
         {errorMensaje && (
           <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
             {errorMensaje}
           </p>
         )}
-        <ProductoForm onSubmit={handleSubmit} isSubmitting={isPending} />
+        <ClienteForm onSubmit={handleSubmit} isSubmitting={isPending} />
       </DialogContent>
     </Dialog>
   );
