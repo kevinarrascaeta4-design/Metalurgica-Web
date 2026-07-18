@@ -1,5 +1,6 @@
 import { useProductos } from '../hooks/useProductos';
 import { ProductoTable } from '../components/ProductoTable';
+import { ProductoCreateDialog } from '../components/ProductoCreateDialog';
 
 export function ProductosPage() {
   const { data: productos, isLoading, isError } = useProductos();
@@ -14,7 +15,10 @@ export function ProductosPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold text-foreground">Productos</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-foreground">Productos</h1>
+        <ProductoCreateDialog />
+      </div>
       <ProductoTable productos={productos} />
     </div>
   );
