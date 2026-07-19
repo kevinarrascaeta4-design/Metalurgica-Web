@@ -1,5 +1,6 @@
 import { usePedidos } from '../hooks/usePedidos';
 import { PedidoTable } from '../components/PedidoTable';
+import { PedidoCreateDialog } from '../components/PedidoCreateDialog';
 
 export function PedidosPage() {
   const { data: pedidos, isLoading, isError } = usePedidos();
@@ -14,7 +15,10 @@ export function PedidosPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold text-foreground">Pedidos</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-foreground">Pedidos</h1>
+        <PedidoCreateDialog />
+      </div>
       <PedidoTable pedidos={pedidos} />
     </div>
   );
