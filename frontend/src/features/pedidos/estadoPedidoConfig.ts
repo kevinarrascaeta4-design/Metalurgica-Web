@@ -23,3 +23,16 @@ export const estadoPedidoConfig: Record<EstadoPedido, EstadoConfig> = {
     badgeClassName: 'bg-red-100 text-red-800 hover:bg-red-100',
   },
 };
+
+// Qué transiciones de estado tienen sentido de negocio desde cada estado actual.
+// Entregado y Cancelado son estados finales: no se puede cambiar desde ahí.
+export const transicionesPermitidas: Record<EstadoPedido, EstadoPedido[]> = {
+  Pendiente: ['Confirmado', 'Cancelado'],
+  Confirmado: ['Entregado', 'Cancelado'],
+  Entregado: [],
+  Cancelado: [],
+};
+
+// Transiciones que, por su impacto (sincronizan otras entidades, o son
+// difíciles de revertir), piden confirmación explícita antes de aplicarse.
+export const estadosQueRequierenConfirmacion: EstadoPedido[] = ['Entregado', 'Cancelado'];

@@ -7,8 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
-import { estadoPedidoConfig } from '../estadoPedidoConfig';
+import { PedidoEstadoDropdown } from './PedidoEstadoDropdown';
 import type { PedidoResponseDto } from '@/types/pedido.types';
 
 interface PedidoTableProps {
@@ -28,35 +27,31 @@ export function PedidoTable({ pedidos }: PedidoTableProps) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {pedidos.map((pedido) => {
-          const config = estadoPedidoConfig[pedido.estado];
-
-          return (
-            <TableRow key={pedido.pedidoId}>
-              <TableCell>
-                <Link
-                  to={`/pedidos/${pedido.pedidoId}`}
-                  className="font-mono text-sm text-primary hover:underline"
-                >
-                  {pedido.numeroPedido}
-                </Link>
-              </TableCell>
-              <TableCell className="font-medium">{pedido.clienteRazonSocial}</TableCell>
-              <TableCell>
-                {new Date(pedido.fechaCreacion).toLocaleDateString('es-AR')}
-              </TableCell>
-              <TableCell>
-                <Badge className={config.badgeClassName}>{config.label}</Badge>
-              </TableCell>
-              <TableCell className="text-right">
-                {pedido.total.toLocaleString('es-AR', {
-                  style: 'currency',
-                  currency: 'ARS',
-                })}
-              </TableCell>
-            </TableRow>
-          );
-        })}
+        {pedidos.map((pedido) => (
+          <TableRow key={pedido.pedidoId}>
+            <TableCell>
+              <Link
+                to={`/pedidos/${pedido.pedidoId}`}
+                className="font-mono text-sm text-primary hover:underline"
+              >
+                {pedido.numeroPedido}
+              </Link>
+            </TableCell>
+            <TableCell className="font-medium">{pedido.clienteRazonSocial}</TableCell>
+            <TableCell>
+              {new Date(pedido.fechaCreacion).toLocaleDateString('es-AR')}
+            </TableCell>
+            <TableCell>
+              <PedidoEstadoDropdown pedidoId={pedido.pedidoId} estadoActual={pedido.estado} />
+            </TableCell>
+            <TableCell className="text-right">
+              {pedido.total.toLocaleString('es-AR', {
+                style: 'currency',
+                currency: 'ARS',
+              })}
+            </TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
