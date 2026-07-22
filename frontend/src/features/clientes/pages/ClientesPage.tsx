@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import { SearchInput } from '@/components/SearchInput';
+import { textIncludes } from '@/utils/normalizeText';
 import { useClientes } from '../hooks/useClientes';
 import { ClienteTable } from '../components/ClienteTable';
 import { ClienteCreateDialog } from '../components/ClienteCreateDialog';
@@ -8,6 +10,16 @@ import { ClienteCreateDialog } from '../components/ClienteCreateDialog';
 export function ClientesPage() {
   const [incluirInactivos, setIncluirInactivos] = useState(false);
   const { data: clientes, isLoading, isError } = useClientes(incluirInactivos);
+  const [busqueda, setBusqueda] = useState('');
+
+  const clientesFiltrados = useMemo(() => {
+    if (!clientes) return [];
+    if (!busqueda) return clientes;
+
+    return clientes.filter(
+      (c) => textIncludes(c.razonSocial, busqueda) || textIncludes(c.cuit, busqueda),
+    );
+  }, [clientes, busqueda]);
 
   if (isLoading) {
     return <p className="text-muted-foreground">Cargando clientes...</p>;
@@ -24,16 +36,23 @@ export function ClientesPage() {
         <ClienteCreateDialog />
       </div>
 
-      <div className="flex items-center gap-2">
-        <Switch
-          id="incluir-inactivos"
-          checked={incluirInactivos}
-          onCheckedChange={setIncluirInactivos}
+      <div className="flex items-center justify-between">
+        <SearchInput
+          value={busqueda}
+          onChange={setBusqueda}
+          placeholder="Buscar por razón social o CUIT..."
         />
-        <Label htmlFor="incluir-inactivos">Mostrar clientes inactivos</Label>
+        <div className="flex items-center gap-2">
+          <Switch
+            id="incluir-inactivos"
+            checked={incluirInactivos}
+            onCheckedChange={setIncluirInactivos}
+          />
+          <Label htmlFor="incluir-inactivos">Mostrar clientes inactivos</Label>
+        </div>
       </div>
 
-      <ClienteTable clientes={clientes} />
+      <ClienteTable clientes={clientesFiltrados} />
     </div>
   );
 }
