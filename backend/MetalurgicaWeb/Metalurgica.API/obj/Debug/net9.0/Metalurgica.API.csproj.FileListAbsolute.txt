@@ -161,3 +161,4 @@ C:\Users\kevin\Documents\Metalurgica-Web\backend\MetalurgicaWeb\Metalurgica.API\
 C:\Users\kevin\Documents\Metalurgica-Web\backend\MetalurgicaWeb\Metalurgica.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\kevin\Documents\Metalurgica-Web\backend\MetalurgicaWeb\Metalurgica.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\kevin\Documents\Metalurgica-Web\backend\MetalurgicaWeb\Metalurgica.API\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\kevin\Documents\Metalurgica-Web\backend\MetalurgicaWeb\Metalurgica.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

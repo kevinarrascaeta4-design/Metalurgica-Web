@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Metalurgica.API.DTOs.Usuario;
 using Metalurgica.API.Services.Interfaces;
 
@@ -6,6 +7,7 @@ namespace Metalurgica.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _service;
