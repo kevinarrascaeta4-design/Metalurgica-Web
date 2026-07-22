@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -16,19 +16,20 @@ interface ProductoEditDialogProps {
 }
 
 export function ProductoEditDialog({ producto, onOpenChange }: ProductoEditDialogProps) {
-  const [errorMensaje, setErrorMensaje] = useState<string | null>(null);
   const { mutate, isPending } = useUpdateProducto();
 
   if (!producto) return null;
 
   const handleSubmit = (values: ProductoFormValues) => {
-    setErrorMensaje(null);
     mutate(
       { id: producto.productoId, dto: values },
       {
-        onSuccess: () => onOpenChange(false),
+        onSuccess: () => {
+          toast.success('Producto actualizado correctamente.');
+          onOpenChange(false);
+        },
         onError: (error: any) => {
-          setErrorMensaje(error.mensaje ?? 'Ocurrió un error al editar el producto.');
+          toast.error(error.mensaje ?? 'Ocurrió un error al editar el producto.');
         },
       },
     );
@@ -45,22 +46,11 @@ export function ProductoEditDialog({ producto, onOpenChange }: ProductoEditDialo
   };
 
   return (
-    <Dialog
-      open={!!producto}
-      onOpenChange={(open) => {
-        onOpenChange(open);
-        if (!open) setErrorMensaje(null);
-      }}
-    >
+    <Dialog open={!!producto} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Editar Producto</DialogTitle>
         </DialogHeader>
-        {errorMensaje && (
-          <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
-            {errorMensaje}
-          </p>
-        )}
         <ProductoForm
           defaultValues={defaultValues}
           onSubmit={handleSubmit}

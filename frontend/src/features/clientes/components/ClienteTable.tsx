@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { MoreHorizontal, Pencil, Power, PowerOff } from 'lucide-react';
 import {
   Table,
@@ -29,6 +30,20 @@ export function ClienteTable({ clientes }: ClienteTableProps) {
   const [clienteAEditar, setClienteAEditar] = useState<ClienteResponseDto | null>(null);
   const { mutate: deactivate } = useDeactivateCliente();
   const { mutate: reactivate } = useReactivateCliente();
+
+  const handleDeactivate = (id: number) => {
+    deactivate(id, {
+      onSuccess: () => toast.success('Cliente desactivado.'),
+      onError: (error: any) => toast.error(error.mensaje ?? 'Error al desactivar el cliente.'),
+    });
+  };
+
+  const handleReactivate = (id: number) => {
+    reactivate(id, {
+      onSuccess: () => toast.success('Cliente reactivado.'),
+      onError: (error: any) => toast.error(error.mensaje ?? 'Error al reactivar el cliente.'),
+    });
+  };
 
   return (
     <>
@@ -70,13 +85,13 @@ export function ClienteTable({ clientes }: ClienteTableProps) {
                     {cliente.activo ? (
                       <DropdownMenuItem
                         variant="destructive"
-                        onClick={() => deactivate(cliente.clienteId)}
+                        onClick={() => handleDeactivate(cliente.clienteId)}
                       >
                         <PowerOff className="h-4 w-4" />
                         Desactivar
                       </DropdownMenuItem>
                     ) : (
-                      <DropdownMenuItem onClick={() => reactivate(cliente.clienteId)}>
+                      <DropdownMenuItem onClick={() => handleReactivate(cliente.clienteId)}>
                         <Power className="h-4 w-4" />
                         Reactivar
                       </DropdownMenuItem>

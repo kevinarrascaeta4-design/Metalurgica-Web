@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -16,19 +16,20 @@ interface ClienteEditDialogProps {
 }
 
 export function ClienteEditDialog({ cliente, onOpenChange }: ClienteEditDialogProps) {
-  const [errorMensaje, setErrorMensaje] = useState<string | null>(null);
   const { mutate, isPending } = useUpdateCliente();
 
   if (!cliente) return null;
 
   const handleSubmit = (values: ClienteFormValues) => {
-    setErrorMensaje(null);
     mutate(
       { id: cliente.clienteId, dto: values },
       {
-        onSuccess: () => onOpenChange(false),
+        onSuccess: () => {
+          toast.success('Cliente actualizado correctamente.');
+          onOpenChange(false);
+        },
         onError: (error: any) => {
-          setErrorMensaje(error.mensaje ?? 'Ocurrió un error al editar el cliente.');
+          toast.error(error.mensaje ?? 'Ocurrió un error al editar el cliente.');
         },
       },
     );
@@ -43,22 +44,11 @@ export function ClienteEditDialog({ cliente, onOpenChange }: ClienteEditDialogPr
   };
 
   return (
-    <Dialog
-      open={!!cliente}
-      onOpenChange={(open) => {
-        onOpenChange(open);
-        if (!open) setErrorMensaje(null);
-      }}
-    >
+    <Dialog open={!!cliente} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Editar Cliente</DialogTitle>
         </DialogHeader>
-        {errorMensaje && (
-          <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
-            {errorMensaje}
-          </p>
-        )}
         <ClienteForm
           defaultValues={defaultValues}
           onSubmit={handleSubmit}

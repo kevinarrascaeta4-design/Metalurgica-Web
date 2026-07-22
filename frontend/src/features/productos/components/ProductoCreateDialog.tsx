@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -14,29 +15,22 @@ import type { ProductoFormValues } from '../schemas/producto.schema';
 
 export function ProductoCreateDialog() {
   const [open, setOpen] = useState(false);
-  const [errorMensaje, setErrorMensaje] = useState<string | null>(null);
   const { mutate, isPending } = useCreateProducto();
 
   const handleSubmit = (values: ProductoFormValues) => {
-    setErrorMensaje(null);
     mutate(values, {
       onSuccess: () => {
+        toast.success('Producto creado correctamente.');
         setOpen(false);
       },
       onError: (error: any) => {
-        setErrorMensaje(error.mensaje ?? 'Ocurrió un error al crear el producto.');
+        toast.error(error.mensaje ?? 'Ocurrió un error al crear el producto.');
       },
     });
   };
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={(nextOpen) => {
-        setOpen(nextOpen);
-        if (!nextOpen) setErrorMensaje(null);
-      }}
-    >
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>
           <Plus className="h-4 w-4" />
@@ -47,11 +41,6 @@ export function ProductoCreateDialog() {
         <DialogHeader>
           <DialogTitle>Nuevo Producto</DialogTitle>
         </DialogHeader>
-        {errorMensaje && (
-          <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
-            {errorMensaje}
-          </p>
-        )}
         <ProductoForm onSubmit={handleSubmit} isSubmitting={isPending} />
       </DialogContent>
     </Dialog>

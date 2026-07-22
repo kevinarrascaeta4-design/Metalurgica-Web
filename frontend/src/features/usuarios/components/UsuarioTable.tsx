@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { MoreHorizontal, Pencil, Power, PowerOff } from 'lucide-react';
 import {
   Table,
@@ -29,6 +30,20 @@ export function UsuarioTable({ usuarios }: UsuarioTableProps) {
   const [usuarioAEditar, setUsuarioAEditar] = useState<UsuarioResponseDto | null>(null);
   const { mutate: deactivate } = useDeactivateUsuario();
   const { mutate: reactivate } = useReactivateUsuario();
+
+  const handleDeactivate = (id: number) => {
+    deactivate(id, {
+      onSuccess: () => toast.success('Usuario desactivado.'),
+      onError: (error: any) => toast.error(error.mensaje ?? 'Error al desactivar el usuario.'),
+    });
+  };
+
+  const handleReactivate = (id: number) => {
+    reactivate(id, {
+      onSuccess: () => toast.success('Usuario reactivado.'),
+      onError: (error: any) => toast.error(error.mensaje ?? 'Error al reactivar el usuario.'),
+    });
+  };
 
   return (
     <>
@@ -68,13 +83,13 @@ export function UsuarioTable({ usuarios }: UsuarioTableProps) {
                     {usuario.activo ? (
                       <DropdownMenuItem
                         variant="destructive"
-                        onClick={() => deactivate(usuario.usuarioId)}
+                        onClick={() => handleDeactivate(usuario.usuarioId)}
                       >
                         <PowerOff className="h-4 w-4" />
                         Desactivar
                       </DropdownMenuItem>
                     ) : (
-                      <DropdownMenuItem onClick={() => reactivate(usuario.usuarioId)}>
+                      <DropdownMenuItem onClick={() => handleReactivate(usuario.usuarioId)}>
                         <Power className="h-4 w-4" />
                         Reactivar
                       </DropdownMenuItem>

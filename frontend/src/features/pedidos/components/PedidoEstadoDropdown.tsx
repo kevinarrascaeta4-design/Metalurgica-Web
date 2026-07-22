@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { ChevronDown } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -32,20 +33,21 @@ interface PedidoEstadoDropdownProps {
 
 export function PedidoEstadoDropdown({ pedidoId, estadoActual }: PedidoEstadoDropdownProps) {
   const [estadoPendiente, setEstadoPendiente] = useState<EstadoPedido | null>(null);
-  const [errorMensaje, setErrorMensaje] = useState<string | null>(null);
   const { mutate, isPending } = useCambiarEstadoPedido();
 
   const config = estadoPedidoConfig[estadoActual];
   const opcionesDisponibles = transicionesPermitidas[estadoActual];
 
   const ejecutarCambio = (nuevoEstado: EstadoPedido) => {
-    setErrorMensaje(null);
     mutate(
       { id: pedidoId, nuevoEstado },
       {
-        onSuccess: () => setEstadoPendiente(null),
+        onSuccess: () => {
+          toast.success(`Pedido marcado como ${estadoPedidoConfig[nuevoEstado].label}.`);
+          setEstadoPendiente(null);
+        },
         onError: (error: any) => {
-          setErrorMensaje(error.mensaje ?? 'Ocurrió un error al cambiar el estado.');
+          toast.error(error.mensaje ?? 'Ocurrió un error al cambiar el estado.');
         },
       },
     );
@@ -83,28 +85,19 @@ export function PedidoEstadoDropdown({ pedidoId, estadoActual }: PedidoEstadoDro
 
       <AlertDialog
         open={estadoPendiente !== null}
-        onOpenChange={(open) => {
-          if (!open) {
-            setEstadoPendiente(null);
-            setErrorMensaje(null);
-          }
-        }}
+        onOpenChange={(open) => !open && setEstadoPendiente(null)}
       >
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
-              ¿Marcar pedido como {estadoPendiente ? estadoPedidoConfig[estadoPendiente].label : ''}?
+              ¿Marcar pedido como{' '}
+              {estadoPendiente ? estadoPedidoConfig[estadoPendiente].label : ''}?
             </AlertDialogTitle>
             <AlertDialogDescription>
               Esta acción puede no ser reversible desde esta pantalla. Confirmá que querés
               continuar.
             </AlertDialogDescription>
           </AlertDialogHeader>
-          {errorMensaje && (
-            <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
-              {errorMensaje}
-            </p>
-          )}
           <AlertDialogFooter>
             <AlertDialogCancel>Cancelar</AlertDialogCancel>
             <AlertDialogAction

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -14,27 +15,22 @@ import type { PedidoFormValues } from '../schemas/pedido.schema';
 
 export function PedidoCreateDialog() {
   const [open, setOpen] = useState(false);
-  const [errorMensaje, setErrorMensaje] = useState<string | null>(null);
   const { mutate, isPending } = useCreatePedido();
 
   const handleSubmit = (values: PedidoFormValues) => {
-    setErrorMensaje(null);
     mutate(values, {
-      onSuccess: () => setOpen(false),
+      onSuccess: () => {
+        toast.success('Pedido creado correctamente.');
+        setOpen(false);
+      },
       onError: (error: any) => {
-        setErrorMensaje(error.mensaje ?? 'Ocurrió un error al crear el pedido.');
+        toast.error(error.mensaje ?? 'Ocurrió un error al crear el pedido.');
       },
     });
   };
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={(nextOpen) => {
-        setOpen(nextOpen);
-        if (!nextOpen) setErrorMensaje(null);
-      }}
-    >
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>
           <Plus className="h-4 w-4" />
@@ -45,11 +41,6 @@ export function PedidoCreateDialog() {
         <DialogHeader>
           <DialogTitle>Nuevo Pedido</DialogTitle>
         </DialogHeader>
-        {errorMensaje && (
-          <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
-            {errorMensaje}
-          </p>
-        )}
         <PedidoCreateForm onSubmit={handleSubmit} isSubmitting={isPending} />
       </DialogContent>
     </Dialog>

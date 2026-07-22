@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { ChevronDown } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -32,20 +33,21 @@ interface EntregaEstadoDropdownProps {
 
 export function EntregaEstadoDropdown({ entregaId, estadoActual }: EntregaEstadoDropdownProps) {
   const [estadoPendiente, setEstadoPendiente] = useState<EstadoEntrega | null>(null);
-  const [errorMensaje, setErrorMensaje] = useState<string | null>(null);
   const { mutate, isPending } = useCambiarEstadoEntrega();
 
   const config = estadoEntregaConfig[estadoActual];
   const opcionesDisponibles = transicionesPermitidas[estadoActual];
 
   const ejecutarCambio = (nuevoEstado: EstadoEntrega) => {
-    setErrorMensaje(null);
     mutate(
       { id: entregaId, nuevoEstado },
       {
-        onSuccess: () => setEstadoPendiente(null),
+        onSuccess: () => {
+          toast.success(`Entrega marcada como ${estadoEntregaConfig[nuevoEstado].label}.`);
+          setEstadoPendiente(null);
+        },
         onError: (error: any) => {
-          setErrorMensaje(error.mensaje ?? 'Ocurrió un error al cambiar el estado.');
+          toast.error(error.mensaje ?? 'Ocurrió un error al cambiar el estado.');
         },
       },
     );
@@ -83,12 +85,7 @@ export function EntregaEstadoDropdown({ entregaId, estadoActual }: EntregaEstado
 
       <AlertDialog
         open={estadoPendiente !== null}
-        onOpenChange={(open) => {
-          if (!open) {
-            setEstadoPendiente(null);
-            setErrorMensaje(null);
-          }
-        }}
+        onOpenChange={(open) => !open && setEstadoPendiente(null)}
       >
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -101,11 +98,6 @@ export function EntregaEstadoDropdown({ entregaId, estadoActual }: EntregaEstado
               continuar.
             </AlertDialogDescription>
           </AlertDialogHeader>
-          {errorMensaje && (
-            <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
-              {errorMensaje}
-            </p>
-          )}
           <AlertDialogFooter>
             <AlertDialogCancel>Cancelar</AlertDialogCancel>
             <AlertDialogAction

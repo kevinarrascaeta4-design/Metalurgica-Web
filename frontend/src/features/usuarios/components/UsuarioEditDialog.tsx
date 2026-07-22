@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -16,16 +16,11 @@ interface UsuarioEditDialogProps {
 }
 
 export function UsuarioEditDialog({ usuario, onOpenChange }: UsuarioEditDialogProps) {
-  const [errorMensaje, setErrorMensaje] = useState<string | null>(null);
   const { mutate, isPending } = useUpdateUsuario();
 
   if (!usuario) return null;
 
   const handleSubmit = (values: UsuarioUpdateFormValues) => {
-    setErrorMensaje(null);
-
-    // Si el campo de password quedó vacío, no lo mandamos (el backend interpreta
-    // la ausencia de password como "no cambiar la contraseña actual").
     const dto = {
       ...values,
       password: values.password ? values.password : undefined,
@@ -34,9 +29,12 @@ export function UsuarioEditDialog({ usuario, onOpenChange }: UsuarioEditDialogPr
     mutate(
       { id: usuario.usuarioId, dto },
       {
-        onSuccess: () => onOpenChange(false),
+        onSuccess: () => {
+          toast.success('Usuario actualizado correctamente.');
+          onOpenChange(false);
+        },
         onError: (error: any) => {
-          setErrorMensaje(error.mensaje ?? 'Ocurrió un error al editar el usuario.');
+          toast.error(error.mensaje ?? 'Ocurrió un error al editar el usuario.');
         },
       },
     );
@@ -50,22 +48,11 @@ export function UsuarioEditDialog({ usuario, onOpenChange }: UsuarioEditDialogPr
   };
 
   return (
-    <Dialog
-      open={!!usuario}
-      onOpenChange={(open) => {
-        onOpenChange(open);
-        if (!open) setErrorMensaje(null);
-      }}
-    >
+    <Dialog open={!!usuario} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Editar Usuario</DialogTitle>
         </DialogHeader>
-        {errorMensaje && (
-          <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
-            {errorMensaje}
-          </p>
-        )}
         <UsuarioEditForm
           defaultValues={defaultValues}
           onSubmit={handleSubmit}

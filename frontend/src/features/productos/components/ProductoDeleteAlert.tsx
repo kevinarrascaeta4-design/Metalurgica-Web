@@ -1,3 +1,4 @@
+import { toast } from 'sonner';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,7 +23,13 @@ export function ProductoDeleteAlert({ producto, onOpenChange }: ProductoDeleteAl
   const handleDelete = () => {
     if (!producto) return;
     mutate(producto.productoId, {
-      onSuccess: () => onOpenChange(false),
+      onSuccess: () => {
+        toast.success('Producto eliminado correctamente.');
+        onOpenChange(false);
+      },
+      onError: (error: any) => {
+        toast.error(error.mensaje ?? 'Ocurrió un error al eliminar el producto.');
+      },
     });
   };
 

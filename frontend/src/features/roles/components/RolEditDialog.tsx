@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -16,41 +16,31 @@ interface RolEditDialogProps {
 }
 
 export function RolEditDialog({ rol, onOpenChange }: RolEditDialogProps) {
-  const [errorMensaje, setErrorMensaje] = useState<string | null>(null);
   const { mutate, isPending } = useUpdateRol();
 
   if (!rol) return null;
 
   const handleSubmit = (values: RolFormValues) => {
-    setErrorMensaje(null);
     mutate(
       { id: rol.rolId, dto: values },
       {
-        onSuccess: () => onOpenChange(false),
+        onSuccess: () => {
+          toast.success('Rol actualizado correctamente.');
+          onOpenChange(false);
+        },
         onError: (error: any) => {
-          setErrorMensaje(error.mensaje ?? 'Ocurrió un error al editar el rol.');
+          toast.error(error.mensaje ?? 'Ocurrió un error al editar el rol.');
         },
       },
     );
   };
 
   return (
-    <Dialog
-      open={!!rol}
-      onOpenChange={(open) => {
-        onOpenChange(open);
-        if (!open) setErrorMensaje(null);
-      }}
-    >
+    <Dialog open={!!rol} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Editar Rol</DialogTitle>
         </DialogHeader>
-        {errorMensaje && (
-          <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
-            {errorMensaje}
-          </p>
-        )}
         <RolForm
           defaultValues={{ nombre: rol.nombre }}
           onSubmit={handleSubmit}
