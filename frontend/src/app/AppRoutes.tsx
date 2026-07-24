@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { AppLayout } from '@/layouts/AppLayout';
+import { LoginPage } from '@/features/auth/pages/LoginPage';
 import { DashboardPage } from '@/features/dashboard/pages/DashboardPage';
 import { ClientesPage } from '@/features/clientes/pages/ClientesPage';
 import { ProductosPage } from '@/features/productos/pages/ProductosPage';
@@ -14,6 +15,8 @@ import { NotFoundPage } from '@/components/NotFoundPage';
 export function AppRoutes() {
   return (
     <Routes>
+      <Route path="/login" element={<LoginPage />} />
+
       <Route element={<AppLayout />}>
         <Route path="/" element={<DashboardPage />} />
         <Route path="/clientes" element={<ClientesPage />} />
