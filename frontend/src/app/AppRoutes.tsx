@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { AppLayout } from '@/layouts/AppLayout';
 import { LoginPage } from '@/features/auth/pages/LoginPage';
+import { ProtectedRoute } from '@/features/auth/ProtectedRoute';
 import { DashboardPage } from '@/features/dashboard/pages/DashboardPage';
 import { ClientesPage } from '@/features/clientes/pages/ClientesPage';
 import { ProductosPage } from '@/features/productos/pages/ProductosPage';
@@ -17,17 +18,19 @@ export function AppRoutes() {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
 
-      <Route element={<AppLayout />}>
-        <Route path="/" element={<DashboardPage />} />
-        <Route path="/clientes" element={<ClientesPage />} />
-        <Route path="/productos" element={<ProductosPage />} />
-        <Route path="/roles" element={<RolesPage />} />
-        <Route path="/usuarios" element={<UsuariosPage />} />
-        <Route path="/pedidos" element={<PedidosPage />} />
-        <Route path="/pedidos/:id" element={<PedidoDetallePage />} />
-        <Route path="/entregas" element={<EntregasPage />} />
-        <Route path="/movimiento-stock" element={<MovimientoStockPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+      <Route element={<ProtectedRoute />}>
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/clientes" element={<ClientesPage />} />
+          <Route path="/productos" element={<ProductosPage />} />
+          <Route path="/roles" element={<RolesPage />} />
+          <Route path="/usuarios" element={<UsuariosPage />} />
+          <Route path="/pedidos" element={<PedidosPage />} />
+          <Route path="/pedidos/:id" element={<PedidoDetallePage />} />
+          <Route path="/entregas" element={<EntregasPage />} />
+          <Route path="/movimiento-stock" element={<MovimientoStockPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
       </Route>
     </Routes>
   );
